@@ -38,7 +38,7 @@ wget
 curl
 rsync
 unzip
-p7zip
+7zip
 openssh
 man-db
 
