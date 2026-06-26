@@ -1,0 +1,9 @@
+# ForgeOS — optional.txt
+# Opt-in. Solo en modo --full. No infla la baseline.
+
+git-lfs
+yq
+atuin
+yazi
+distrobox
+superfile

@@ -1,0 +1,4 @@
+# ForgeOS — hardware/gpu/intel.txt
+mesa
+vulkan-intel
+intel-media-driver

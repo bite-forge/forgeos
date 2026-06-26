@@ -1,0 +1,6 @@
+# ForgeOS — hardware/gpu/nvidia.txt
+# lib32-nvidia-utils requiere [multilib] (install.sh lo habilita).
+nvidia-dkms
+nvidia-utils
+nvidia-settings
+lib32-nvidia-utils

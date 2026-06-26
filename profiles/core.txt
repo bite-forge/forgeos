@@ -1,0 +1,49 @@
+# ForgeOS — core.txt
+# Núcleo: CLI + shell. Se instala SIEMPRE (todos los modos).
+# Un paquete por línea. '#' = comentario.
+
+# base + control de versiones
+base-devel
+git
+stow
+
+# shell
+fish
+starship
+
+# terminal
+kitty
+
+# búsqueda / archivos
+ripgrep
+fd
+fzf
+bat
+eza
+zoxide
+
+# datos
+jq
+
+# monitorización / info
+btop
+fastfetch
+
+# ayuda / git UX
+tealdeer
+git-delta
+
+# red / compresión
+wget
+curl
+rsync
+unzip
+p7zip
+openssh
+man-db
+
+# pacman utils + mirrors + memoria
+pacman-contrib
+reflector
+zram-generator
+# systemd-oomd NO es paquete: se habilita en post-install

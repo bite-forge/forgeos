@@ -1,0 +1,10 @@
+# ForgeOS — aur.txt
+# Paquetes AUR. Mínimo y revisable. Modos: dev, desktop, full (salvo --no-aur).
+#
+# 'paru' NO está aquí: es el helper. Se bootstrapea aparte respetando el flujo
+# de revisión de PKGBUILD (git clone -> cat PKGBUILD -> makepkg -si).
+
+visual-studio-code-bin
+librewolf-bin
+fnm
+bun-bin

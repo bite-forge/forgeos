@@ -1,0 +1,5 @@
+# ForgeOS — hardware/laptop.txt
+# Energía: tlp. NO añadir auto-cpufreq ni power-profiles-daemon (conflicto governor).
+tlp
+tlp-rdw
+fwupd

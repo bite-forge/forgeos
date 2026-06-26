@@ -1,0 +1,69 @@
+# ForgeOS — desktop.txt
+# Entorno Hyprland/Wayland hecho a mano (sin HyDE). Modos: desktop, full.
+
+# compositor + sesión
+hyprland
+hyprpaper
+hypridle
+hyprlock
+
+# barra / launcher / notificaciones
+waybar
+wofi
+mako
+
+# portals (Electron/Qt/screenshare)
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+
+# polkit
+hyprpolkitagent
+
+# integración Qt en Wayland
+qt5-wayland
+qt6-wayland
+
+# gestor de archivos
+thunar
+thunar-volman
+gvfs
+
+# red
+networkmanager
+network-manager-applet
+
+# bluetooth
+blueman
+bluez
+bluez-utils
+
+# brillo / multimedia
+brightnessctl
+playerctl
+pamixer
+pavucontrol
+
+# capturas / portapapeles
+grim
+slurp
+swappy
+cliphist
+wl-clipboard
+
+# audio (PipeWire)
+pipewire
+wireplumber
+pipewire-pulse
+pipewire-alsa
+pipewire-jack
+sof-firmware
+
+# display manager (ultra-ligero, sin GUI)
+greetd
+greetd-tuigreet
+
+# fuentes
+ttf-jetbrains-mono-nerd
+noto-fonts
+noto-fonts-emoji
+ttf-font-awesome

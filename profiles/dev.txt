@@ -1,0 +1,25 @@
+# ForgeOS — dev.txt
+# Toolchain de desarrollo web. Modos: dev, desktop, full.
+#
+# NOTA NODE: 'nodejs' del repo NO se instala — conflicto de PATH con fnm.
+# Node se gestiona con fnm (profiles/aur.txt): 'fnm install --lts' + 'corepack enable'.
+
+# editor
+neovim
+
+# python (estándar 2026)
+python
+uv
+
+# contenedores
+docker
+docker-compose
+docker-buildx
+
+# git UX
+github-cli
+lazygit
+
+# navegadores
+firefox
+chromium

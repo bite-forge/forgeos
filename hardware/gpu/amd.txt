@@ -1,0 +1,4 @@
+# ForgeOS — hardware/gpu/amd.txt
+mesa
+vulkan-radeon
+libva-mesa-driver
