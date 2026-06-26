@@ -1,0 +1,24 @@
+Idioma: Spanish
+Localidades:
+es
+es_ES.UTF-8
+Espejos y repos: Spain
+Partición amiento -> Manual -> Selección de discos -> Sugerir diseño -> btrfs -> subvolúmenes y usar compresión:
+@ | /
+@home | /home
+@snapshots | /.snapshots
+@var_log | /var/log
+Cifrado ✓
+Btrfs snapshots ✓ Snapper
+Swap: Desactivado
+Gestor de arranque: Systemd-boot
+Núcleos: Linux
+Hostname: ws2
+Autentificación: Pass de root (classic long)  y user: lll (classic)
+Perfil: minimal
+Aplicaciones: nada
+Config de la red: backend por defecto (wpa_supplicant)
+Pacman: True
+Paquetes adicionales: git base-devel networkmanager btrfs-progs openssh
+Zona horaria: Europe/Madrid
+NTP: Habilitado
