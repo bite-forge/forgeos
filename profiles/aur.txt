@@ -8,3 +8,4 @@ visual-studio-code-bin
 librewolf-bin
 fnm
 bun-bin
+brave-origin-bin
