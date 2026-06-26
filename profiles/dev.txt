@@ -23,3 +23,6 @@ lazygit
 # navegadores
 firefox
 chromium
+
+# coding agent
+opencode
