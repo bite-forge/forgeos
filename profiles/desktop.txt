@@ -66,4 +66,4 @@ greetd-tuigreet
 ttf-jetbrains-mono-nerd
 noto-fonts
 noto-fonts-emoji
-ttf-font-awesome
+otf-font-awesome
