@@ -6,7 +6,7 @@ detect_gpu() {
   local info
   info="$(lspci 2>/dev/null | grep -Ei 'vga|3d|display' || true)"
 
-  if grep -qiE 'amd|ati|radeon' <<<"$info"; then DETECTED_GPU+=("amd"); fi
+  if grep -qiE '\bamd\b|\bati\b|radeon' <<<"$info"; then DETECTED_GPU+=("amd"); fi
   if grep -qi  'intel'          <<<"$info"; then DETECTED_GPU+=("intel"); fi
   if grep -qi  'nvidia'         <<<"$info"; then DETECTED_GPU+=("nvidia"); fi
 
