@@ -25,6 +25,29 @@ run() {
   "$@"
 }
 
+# --- escribir contenido a un archivo, respetando dry-run y sudo ---
+# Uso:  write_file <ruta> [--sudo] <<EOF ... EOF
+#   o:  printf '%s' "$c" | write_file <ruta> [--sudo]
+write_file() {
+  local path="$1"; shift
+  local use_sudo=false
+  [[ "${1:-}" == "--sudo" ]] && { use_sudo=true; shift; }
+  local content; content="$(cat)"   # stdin → variable
+
+  if [[ "$DRY_RUN" == "true" ]]; then
+    printf '%b[dry-run]%b write → %s (%d bytes)\n' \
+      "$C_DIM" "$C_RESET" "$path" "${#content}"
+    _log_raw "[dry-run] write $path"
+    return 0
+  fi
+  _log_raw "[write] $path"
+  if [[ "$use_sudo" == "true" ]]; then
+    printf '%s\n' "$content" | maybe_sudo tee "$path" >/dev/null
+  else
+    printf '%s\n' "$content" > "$path"
+  fi
+}
+
 # --- confirmación interactiva ---
 confirm() {
   local prompt="${1:-¿Continuar?}"
