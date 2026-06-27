@@ -47,6 +47,26 @@ post_install() {
     warn "  fnm install --lts && fnm default lts-latest && corepack enable"
   fi
 
+  # 5. Shell por defecto: fish (idempotente)
+  local fish_bin
+  fish_bin="$(command -v fish || true)"
+  if [[ -n "$fish_bin" ]]; then
+    # Asegura que fish está en /etc/shells (chsh lo exige)
+    if ! grep -qx "$fish_bin" /etc/shells 2>/dev/null; then
+      log "Registrando $fish_bin en /etc/shells"
+      echo "$fish_bin" | run maybe_sudo tee -a /etc/shells >/dev/null
+    fi
+    # Cambia el shell solo si no es ya fish
+    if [[ "$(getent passwd "$USER" | cut -d: -f7)" != "$fish_bin" ]]; then
+      log "Cambiando shell de $USER a fish"
+      run maybe_sudo chsh -s "$fish_bin" "$USER"
+    else
+      ok "Shell ya es fish"
+    fi
+  else
+    warn "fish no encontrado — shell sin cambiar"
+  fi
+
   ok "Post-install completado."
   log "Reinicia o re-loguea para aplicar grupos y el display manager."
 }
