@@ -248,3 +248,37 @@ $hint
 EOF
   ok "monitors.conf → $out"
 }
+
+# Copia los wallpapers del repo (assets, no config) a la carpeta
+# del usuario. No van por stow: son binarios, no configs enlazables.
+
+install_wallpapers() {
+  local src="$REPO_DIR/wallpapers"
+  local dst="$HOME/Pictures/Wallpapers/ForgeOS"
+
+  if [[ ! -d "$src" ]]; then
+    warn "wallpapers/ no existe en el repo — omitido"
+    return 0
+  fi
+
+  run mkdir -p "$dst"
+
+  local count=0 f
+  shopt -s nullglob
+  for f in "$src"/*.png "$src"/*.jpg "$src"/*.jpeg; do
+    [[ -e "$f" ]] || continue
+    if [[ "$DRY_RUN" == "true" ]]; then
+      printf '%b[dry-run]%b cp → %s\n' "$C_DIM" "$C_RESET" "$dst/$(basename "$f")"
+    else
+      cp -n "$f" "$dst/" 2>/dev/null || true
+    fi
+    ((count++)) || true
+  done
+  shopt -u nullglob
+
+  if (( count > 0 )); then
+    ok "Wallpapers instalados ($count) → $dst"
+  else
+    warn "Sin imágenes en $src"
+  fi
+}

@@ -158,8 +158,9 @@ main() {
   # 5. Dotfiles (skip elegante hasta Fase 2)
   backup_configs
   stow_dotfiles
-  generate_gpu_config        # ← fragmento GPU dinámico según hardware
-  generate_monitors_config   # ← fragmento monitores (B+A)
+  generate_gpu_config        # fragmento GPU dinámico según hardware
+  generate_monitors_config   # fragmento monitores (B+A)
+  install_wallpapers         # ← copia assets de wallpapers al usuario
 
   # 6. Post-install (servicios, docker, etc.)
   post_install
