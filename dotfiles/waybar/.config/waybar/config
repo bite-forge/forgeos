@@ -1,0 +1,217 @@
+{
+    // ==========================================================================
+    // FORGEOS · WAYBAR CONFIG
+    // Barra fina top. Híbrido: info pasiva por tooltip, interactivos por script.
+    // ==========================================================================
+
+    "layer": "top",
+    "position": "top",
+    "height": 16,
+    "spacing": 4,
+    "margin-top": 2,
+    "margin-left": 4,
+    "margin-right": 4,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray",
+        "cpu",
+        "memory",
+        "temperature",
+        "network",
+        "bluetooth",
+        "pulseaudio",
+        "battery",
+        "custom/power"
+    ],
+
+    // ==========================================================================
+    // IZQUIERDA — workspaces activos + título ventana
+    // ==========================================================================
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "I",
+            "2": "II",
+            "3": "III",
+            "4": "IV",
+            "5": "V",
+            "6": "VI",
+            "7": "VII",
+            "8": "VIII",
+            "9": "IX",
+            "10": "X",
+            "urgent":  "",
+            "active":  "",
+            "default": ""
+        },
+        // Solo muestra los workspaces que existen/están activos.
+        // (sin persistent-workspaces → no fuerza vacíos)
+        "on-click": "activate",
+        "on-scroll-up":   "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1"
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 45,
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": " $1",
+            "(.*) - Brave": " $1",
+            "(.*) - Visual Studio Code": " $1",
+            "(.*)": "$1"
+        }
+    },
+
+    // ==========================================================================
+    // CENTRO — reloj
+    // clic: alterna formato corto <-> largo (día semana, fecha completa)
+    // hover: calendario anual
+    // ==========================================================================
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%A, %d de %B %Y · %H:%M}",
+        "tooltip-format": "<tt><big>{:%Y %B}</big>\n\n{calendar}</tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months":   "<span color='#ffffff'><b>{}</b></span>",
+                "days":     "<span color='#cccccc'>{}</span>",
+                "weeks":    "<span color='#777777'>W{}</span>",
+                "weekdays": "<span color='#aaaaaa'><b>{}</b></span>",
+                "today":    "<span color='#ffffff'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click":       "mode",
+            "on-scroll-up":   "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    // ==========================================================================
+    // DERECHA
+    // ==========================================================================
+
+    "tray": {
+        "icon-size": 12,
+        "spacing": 6
+    },
+
+    // CPU — % visible, hover desglosa por core
+    "cpu": {
+        "interval": 3,
+        "format": " {usage}%",
+        "tooltip": true,
+        "tooltip-format": "CPU {usage}% · load {load}\n{usage0}% {usage1}% {usage2}% {usage3}%\n{usage4}% {usage5}% {usage6}% {usage7}%",
+        "on-click": "kitty -e btop",
+        "states": {
+            "warning":  65,
+            "critical": 85
+        }
+    },
+
+    // RAM — % visible, hover detalle
+    "memory": {
+        "interval": 5,
+        "format": " {percentage}%",
+        "tooltip-format": "RAM {used:0.1f}G / {total:0.1f}G\nSwap {swapUsed:0.1f}G / {swapTotal:0.1f}G",
+        "on-click": "kitty -e btop",
+        "states": {
+            "warning":  75,
+            "critical": 90
+        }
+    },
+
+    // Temperatura — grados visibles
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "Temperatura {temperatureC}°C"
+    },
+
+    // Red — icono; clic izq desplegable wifi (%/IP/gateway); tooltip pasivo
+    "network": {
+        "interval": 30,
+        "format-wifi":         "󰤨",
+        "format-ethernet":     "󰈀",
+        "format-linked":       "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip-format-wifi":         "  {essid} ({signalStrength}%)\nIP {ipaddr}/{cidr}\nGateway {gwaddr}",
+        "tooltip-format-ethernet":     "󰈀 {ifname}\nIP {ipaddr}/{cidr}\nGateway {gwaddr}",
+        "tooltip-format-disconnected": "Sin conexión",
+        "on-click":       "~/.config/waybar/scripts/network-menu.sh",
+        "on-click-right": "kitty -e nmtui"
+    },
+
+    // Bluetooth — clic abre menú custom
+    "bluetooth": {
+        "format":           "󰂯",
+        "format-connected": "󰂱",
+        "format-disabled":  "󰂲",
+        "format-off":       "󰂲",
+        "tooltip-format":                             "Bluetooth {status}\n{controller_alias}",
+        "tooltip-format-connected":                   "Bluetooth conectado\n{controller_alias}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected":         "  {device_alias}",
+        "tooltip-format-enumerate-connected-battery": "  {device_alias} — {device_battery_percentage}%",
+        "on-click":       "~/.config/waybar/scripts/bluetooth-menu.sh",
+        "on-click-right": "blueman-manager"
+    },
+
+    // Audio
+    "pulseaudio": {
+        "format":                 "{icon}",
+        "format-muted":           "󰝟",
+        "format-bluetooth":       "󰂰",
+        "format-bluetooth-muted": "󰂲",
+        "format-icons": {
+            "headphone":  "󰋋",
+            "hands-free": "󰋎",
+            "headset":    "󰋎",
+            "phone":      "󰏲",
+            "portable":   "󰏲",
+            "car":        "󰄋",
+            "default":    ["󰕿", "󰖀", "󰕾"]
+        },
+        "tooltip-format": "{desc}\nVolumen {volume}%",
+        "on-click":       "~/.config/waybar/scripts/audio-menu.sh",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up":   "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+",
+        "on-scroll-down": "wpctl set-volume        @DEFAULT_AUDIO_SINK@ 2%-",
+        "scroll-step": 2
+    },
+
+    "battery": {
+        "states": {
+            "good":     95,
+            "warning":  30,
+            "critical": 15
+        },
+        "format":          "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged":  " {capacity}%",
+        "format-full":     " Full",
+        "format-alt":      "{icon} {time}",
+        "format-icons":    ["", "", "", "", ""],
+        "tooltip-format":  "Batería {capacity}%\nEstado {power}W\nTiempo {time}"
+    },
+
+    "custom/power": {
+        "format":   "⏻",
+        "tooltip":  "Power Menu",
+        "on-click": "~/.config/waybar/scripts/power-menu.sh"
+    }
+}

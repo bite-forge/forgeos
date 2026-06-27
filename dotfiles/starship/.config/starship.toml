@@ -1,0 +1,118 @@
+# ┌─────────────────────────────────────────────────────────────┐
+# │  ForgeOS · starship.toml                                     │
+# │  Prompt minimalista. Hereda colores ANSI del tema de kitty. │
+# │  Docs: https://starship.rs/config/                          │
+# └─────────────────────────────────────────────────────────────┘
+
+format = """
+$os\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$golang\
+$cmd_duration\
+$line_break\
+$character"""
+
+add_newline = true
+command_timeout = 500
+
+# ── OS icon ──
+[os]
+disabled = false
+format = '[$symbol](bold white) '
+
+[os.symbols]
+Arch = ''
+Ubuntu = ''
+Debian = ''
+Raspbian = ''
+Linux = ''
+
+# ── Hostname (solo en SSH) ──
+[hostname]
+ssh_only = true
+format = '[$hostname](bold white) '
+disabled = false
+
+# ── Directorio ──
+[directory]
+style = 'bold white'
+truncation_length = 3
+truncation_symbol = '…/'
+truncate_to_repo = true
+read_only = ' '
+read_only_style = 'white'
+home_symbol = '~'
+
+[directory.substitutions]
+'Documents' = ' '
+'Downloads' = ' '
+'Pictures'  = ' '
+'Projects'  = ' '
+
+# ── Git ──
+[git_branch]
+symbol = ' '
+style = 'bold bright-white'
+format = 'on [$symbol$branch]($style) '
+
+[git_status]
+style = '#c87a7a'
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = '='
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+up_to_date = ''
+untracked = '?${count}'
+stashed = '$'
+modified = '!${count}'
+staged = '+${count}'
+renamed = '»${count}'
+deleted = '✘${count}'
+
+# ── Lenguajes ──
+[python]
+symbol = ' '
+style = 'bright-white'
+format = 'via [$symbol$version( \($virtualenv\))]($style) '
+
+[nodejs]
+symbol = ' '
+style = 'bright-white'
+format = 'via [$symbol$version]($style) '
+detect_files = ['package.json', '.nvmrc']
+
+[golang]
+symbol = ' '
+style = 'bright-white'
+format = 'via [$symbol$version]($style) '
+
+# ── Duración del último comando (>2s) ──
+[cmd_duration]
+min_time = 2_000
+format = 'took [$duration](bright-black) '
+
+# ── Character (flecha del prompt) ──
+# Blanco si OK, rojo apagado si falló — visible sin romper la estética.
+[character]
+success_symbol = '[❯](bold white)'
+error_symbol = '[❯](bold #c87a7a)'
+vicmd_symbol = '[❮](bold white)'
+
+# ── Módulos deshabilitados ──
+[package]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true

@@ -1,0 +1,92 @@
+/* =============================================================================
+ * FORGEOS · WOFI STYLE
+ * Blanco / negro + transparencia. Sirve para launcher (drun) y menús (dmenu).
+ * ============================================================================= */
+
+/* ── Ventana ────────────────────────────────────────────────────────────── */
+window {
+    margin: 0;
+    background-color: rgba(10, 10, 10, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    font-family: "JetBrainsMono Nerd Font", "CaskaydiaCove Nerd Font", sans-serif;
+    font-size: 13px;
+    color: #f0f0f0;
+}
+
+/* ── Caja externa ───────────────────────────────────────────────────────── */
+#outer-box {
+    margin: 0;
+    padding: 14px;
+}
+
+/* ── Campo de búsqueda ──────────────────────────────────────────────────── */
+#input {
+    margin: 0 0 12px 0;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    font-size: 14px;
+}
+
+#input:focus {
+    background-color: rgba(255, 255, 255, 0.10);
+    border: none;
+    outline: none;
+}
+
+/* placeholder más tenue */
+#input image {
+    color: #888888;
+}
+
+/* ── Scroll ─────────────────────────────────────────────────────────────── */
+#scroll {
+    margin: 0;
+    border: none;
+}
+
+/* ── Lista de resultados ────────────────────────────────────────────────── */
+#inner-box {
+    margin: 0;
+    background-color: transparent;
+}
+
+/* ── Cada entrada ───────────────────────────────────────────────────────── */
+#entry {
+    margin: 2px 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+#entry:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Entrada seleccionada: blanco casi sólido, texto negro (alto contraste) */
+#entry:selected {
+    background-color: rgba(255, 255, 255, 0.92);
+    color: #0a0a0a;
+}
+
+#entry:selected #text {
+    color: #0a0a0a;
+}
+
+/* ── Texto e iconos ─────────────────────────────────────────────────────── */
+#text {
+    color: #f0f0f0;
+    margin: 0;
+}
+
+#img {
+    margin-right: 10px;
+}
+
+/* ── Sin resultados ─────────────────────────────────────────────────────── */
+#entry.no-match {
+    color: #888888;
+}

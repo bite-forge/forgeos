@@ -1,0 +1,32 @@
+# ┌─────────────────────────────────────────────────────────────┐
+# │  ForgeOS · monitors.conf                                     │
+# │  Configuración de monitores por máquina.                    │
+# └─────────────────────────────────────────────────────────────┘
+#
+# Formato: monitor = NAME,RESOLUTION@REFRESH,POSITION,SCALE
+# Lista:   hyprctl monitors
+#
+# Hyprland ignora las líneas de monitores no presentes, así que
+# este archivo puede contener varias máquinas sin conflicto.
+
+# ── Katana (MSI, panel AU Optronics 14") ──
+# eDP-1: 1920x1080@144Hz, scale 1.0
+monitor = eDP-1, 1920x1080@144, 0x0, 1.0
+
+# ── Fallback: cualquier monitor desconocido usa preferida ──
+monitor = , preferred, auto, 1
+
+
+# ─── Plantillas para monitores externos ───────────────
+#
+# WS2 (Lenovo T14s) — panel a scale 1.25:
+# monitor = eDP-1, 1920x1080@60, 0x0, 1.25
+#
+# Externo HDMI a la derecha (sin scale):
+# monitor = HDMI-A-1, 1920x1080@60, 1920x0, 1
+#
+# Externo 2K/QHD DisplayPort a la izquierda:
+# monitor = DP-1, 2560x1440@60, -2560x0, 1
+#
+# Deshabilitar panel interno cuando hay externo:
+# monitor = eDP-1, disable

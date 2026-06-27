@@ -1,0 +1,82 @@
+# ┌─────────────────────────────────────────────────────────────┐
+# │  ForgeOS · mako/config                                       │
+# │  Notificaciones minimalistas, blanco/negro + transparencia. │
+# │  Docs: man 5 mako                                            │
+# └─────────────────────────────────────────────────────────────┘
+
+# ── Posición y tamaño ─────────────────────────────────────────
+# top-right, con margen para no chocar con waybar (height 16 + margin 2)
+anchor=top-right
+margin=8,12,12,12
+width=360
+height=180
+max-visible=5
+
+# ── Apariencia ────────────────────────────────────────────────
+background-color=#0a0a0aE6
+text-color=#f0f0f0
+border-color=#ffffff80
+border-size=1
+border-radius=10
+padding=12,14
+progress-color=over #ffffff30
+
+# ── Texto ─────────────────────────────────────────────────────
+font=JetBrainsMono Nerd Font 10
+markup=1
+format=<b>%s</b>\n%b
+text-alignment=left
+
+# ── Iconos ────────────────────────────────────────────────────
+icons=1
+icon-location=left
+max-icon-size=48
+
+# ── Comportamiento ────────────────────────────────────────────
+default-timeout=8000
+ignore-timeout=0
+sort=-time
+layer=overlay
+max-history=20
+
+# ── Acciones de ratón ─────────────────────────────────────────
+on-button-left=dismiss
+on-button-right=dismiss-all
+on-button-middle=invoke-default-action
+on-touch=dismiss
+
+
+# ══════════════════════════════════════════════════════════════
+#   URGENCIAS · ForgeOS
+# ══════════════════════════════════════════════════════════════
+
+[urgency=low]
+background-color=#0a0a0aE6
+text-color=#cccccc
+border-color=#55555580
+default-timeout=5000
+
+[urgency=normal]
+background-color=#0a0a0aE6
+text-color=#f0f0f0
+border-color=#ffffff80
+default-timeout=8000
+
+[urgency=critical]
+background-color=#0a0a0aF2
+text-color=#ffffff
+border-color=#e06464
+default-timeout=0
+
+
+# ══════════════════════════════════════════════════════════════
+#   REGLAS POR APP (ejemplos — descomenta las que quieras)
+# ══════════════════════════════════════════════════════════════
+
+# Silenciar notificaciones de Spotify (suelen ser ruido)
+# [app-name=Spotify]
+# invisible=1
+
+# Telegram normal
+# [app-name="Telegram Desktop"]
+# default-timeout=10000

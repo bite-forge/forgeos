@@ -1,0 +1,314 @@
+/* =============================================================================
+ * FORGEOS · WAYBAR STYLE
+ * Blanco / negro + transparencias. Theming en las @define-color de abajo.
+ * ============================================================================= */
+
+/* ── Paleta ForgeOS ─────────────────────────────────────────────────────── */
+@define-color main-bg   rgba(10, 10, 10, 0.78);   /* negro translúcido    */
+@define-color main-fg   #f0f0f0;                  /* blanco hueso         */
+@define-color wb-hvr-bg rgba(255, 255, 255, 0.14);
+@define-color wb-hvr-fg #ffffff;
+@define-color wb-act-bg rgba(255, 255, 255, 0.92); /* activo: casi blanco  */
+@define-color wb-act-fg #0a0a0a;                   /* texto negro sobre él */
+@define-color accent    #ffffff;
+@define-color warn      #e6c84f;
+@define-color crit      #e06464;
+
+/* ── Reset ──────────────────────────────────────────────────────────────── */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* =============================================================================
+ * VENTANA PRINCIPAL
+ * ============================================================================= */
+
+window#waybar {
+    background-color: transparent;
+    color: @main-fg;
+    transition: background-color 0.3s ease;
+}
+
+/* =============================================================================
+ * TOOLTIPS
+ * ============================================================================= */
+
+tooltip {
+    background: @main-bg;
+    color: @main-fg;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+tooltip label {
+    color: @main-fg;
+}
+
+/* =============================================================================
+ * WORKSPACES
+ * ============================================================================= */
+
+#workspaces {
+    background-color: @main-bg;
+    border-radius: 8px;
+    padding: 0 2px;
+    margin: 1px 0;
+}
+
+#workspaces button {
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0 0.3em;
+    margin: 0.2em 0;
+    color: @main-fg;
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+}
+
+#workspaces button.active {
+    background: @wb-act-bg;
+    color: @wb-act-fg;
+    margin: 0 0.3em;
+    padding: 0 1.2em;
+    transition: all 0.4s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button.urgent {
+    background-color: rgba(224, 100, 100, 0.35);
+    color: @main-fg;
+    animation: urgent-pulse 1s ease-in-out infinite;
+}
+
+@keyframes urgent-pulse {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* =============================================================================
+ * VENTANA ACTIVA (título)
+ * ============================================================================= */
+
+#window {
+    padding: 0 8px;
+    margin: 1px 0;
+    color: @main-fg;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+#window:hover {
+    opacity: 1;
+}
+
+/* =============================================================================
+ * RELOJ
+ * ============================================================================= */
+
+#clock {
+    background-color: @main-bg;
+    border-radius: 8px;
+    padding: 1px 12px;
+    margin: 1px 0;
+    color: @main-fg;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+#clock:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+}
+
+/* =============================================================================
+ * MÓDULOS DERECHA — base compartida
+ * ============================================================================= */
+
+#tray,
+#cpu,
+#memory,
+#temperature,
+#network,
+#bluetooth,
+#pulseaudio,
+#battery,
+#custom-power {
+    padding: 1px 6px;
+    margin: 1px 2px;
+    background-color: @main-bg;
+    border-radius: 8px;
+    color: @main-fg;
+    transition: all 0.2s ease;
+}
+
+#tray:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#battery:hover,
+#custom-power:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+}
+
+/* =============================================================================
+ * CPU y RAM — estados warning/critical
+ * ============================================================================= */
+
+#cpu.warning,
+#memory.warning {
+    color: @warn;
+}
+
+#cpu.critical,
+#memory.critical {
+    color: @crit;
+    animation: blink 1s ease-in-out infinite;
+}
+
+/* =============================================================================
+ * TEMPERATURA
+ * ============================================================================= */
+
+#temperature.warning {
+    color: @warn;
+}
+
+#temperature.critical {
+    color: @crit;
+    animation: blink 1s ease-in-out infinite;
+}
+
+/* =============================================================================
+ * RED
+ * ============================================================================= */
+
+#network {
+    font-size: 14px;
+    padding: 1px 6px;
+}
+
+#network.disconnected {
+    opacity: 0.4;
+}
+
+#network.linked {
+    opacity: 0.6;
+}
+
+/* =============================================================================
+ * BLUETOOTH
+ * ============================================================================= */
+
+#bluetooth {
+    font-size: 14px;
+    padding: 1px 6px;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+    opacity: 0.3;
+    background-color: transparent;
+}
+
+/* =============================================================================
+ * AUDIO
+ * ============================================================================= */
+
+#pulseaudio {
+    font-size: 14px;
+    padding: 1px 7px;
+}
+
+#pulseaudio.muted {
+    opacity: 0.4;
+}
+
+/* =============================================================================
+ * BATERÍA
+ * ============================================================================= */
+
+#battery.charging,
+#battery.plugged {
+    color: #88dd88;
+}
+
+#battery.warning:not(.charging) {
+    color: @warn;
+}
+
+#battery.critical:not(.charging) {
+    color: @crit;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#battery.not-found {
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* =============================================================================
+ * POWER
+ * ============================================================================= */
+
+#custom-power {
+    padding: 1px 10px;
+    margin-right: 2px;
+    font-size: 13px;
+}
+
+#custom-power:hover {
+    color: @crit;
+    background-color: rgba(224, 100, 100, 0.2);
+}
+
+/* =============================================================================
+ * BANDEJA
+ * ============================================================================= */
+
+#tray {
+    padding: 2px 6px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+#tray menu * {
+    min-height: 1.6em;
+}
+
+#tray menu separator {
+    min-height: 0.1em;
+}
+
+/* =============================================================================
+ * ANIMACIONES
+ * ============================================================================= */
+
+@keyframes blink {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.5; }
+    100% { opacity: 1; }
+}

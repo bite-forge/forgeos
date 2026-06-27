@@ -1,0 +1,40 @@
+# ┌─────────────────────────────────────────────────────────────┐
+# │  ForgeOS · wofi/config                                       │
+# │  Comportamiento. La estética va en style.css.               │
+# └─────────────────────────────────────────────────────────────┘
+
+# Modo por defecto al lanzar sin args (SUPER+A usa --show drun)
+show=drun
+
+# Ancho/alto de la ventana (los menús dmenu de waybar pasan sus
+# propios --width/--height, que tienen prioridad sobre esto)
+width=420
+height=480
+
+# Posición y márgenes
+location=center
+
+# Comportamiento
+prompt=Buscar
+filter_rate=100
+allow_markup=true
+allow_images=true
+image_size=24
+no_actions=true
+gtk_dark=true
+
+# Coincidencia: fuzzy para encontrar apps escribiendo poco
+matching=fuzzy
+insensitive=true
+
+# Acciones de teclado
+key_expand=Tab
+key_exit=Escape
+
+# Al ejecutar, cerrar
+hide_scroll=true
+dynamic_lines=false
+
+# Para drun: usar el nombre de la app, ejecutar limpio
+print_command=false
+term=kitty

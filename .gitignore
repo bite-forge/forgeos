@@ -1,1 +1,19 @@
+# === ForgeOS .gitignore ===
+# Archivos generados por el instalador (NO versionar):
+# viven en ~/.config/forgeos/ en cada máquina, no en el repo.
+
+# Logs del instalador
+*.log
+install-*.log
+
+# Backups que crea backup_configs()
+.forgeos-config-backup-*/
+
+# Artefactos de stow
+*.stow-local-ignore
+
+# Editor / SO
 .directory
+*.swp
+*~
+.DS_Store
