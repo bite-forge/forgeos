@@ -48,3 +48,11 @@ pacman-contrib
 reflector
 zram-generator
 # systemd-oomd NO es paquete: se habilita en post-install
+
+# red / VPN / firewall
+wireguard-tools
+ufw
+
+# btrfs + snapshots (WS2 usa btrfs)
+btrfs-progs
+snapper

@@ -67,3 +67,7 @@ ttf-jetbrains-mono-nerd
 noto-fonts
 noto-fonts-emoji
 otf-font-awesome
+
+# cursor + iconos (referenciados por hyprland.conf y wofi/waybar)
+papirus-icon-theme
+ffmpegthumbnailer

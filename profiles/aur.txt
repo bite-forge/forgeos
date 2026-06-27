@@ -9,3 +9,4 @@ librewolf-bin
 fnm
 bun-bin
 brave-origin-bin
+bibata-cursor-theme
