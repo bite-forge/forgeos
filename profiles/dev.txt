@@ -8,6 +8,9 @@
 neovim
 obsidian
 
+# study
+anki
+
 # python (estándar 2026)
 python
 uv
